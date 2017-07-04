@@ -1,0 +1,87 @@
+﻿Version=6.8
+NumberOfModules=1
+Module1=Starter
+Build1=Default,b4a.example
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=1
+File1=main.bal
+NumberOfLibraries=1
+Library1=core
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: WebView 1
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	
+	Dim CurrentUrl As String
+
+End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+
+	Private URLTEXT As EditText
+	Private Button1 As Button
+	Private Button2 As Button
+	Private WebView1 As WebView
+	
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	'Do not forget to load the layout file created with the visual designer. For example:
+	Activity.LoadLayout("main")
+	
+	'Especificando el sitio de internet
+	CurrentUrl = "https://www.google.com.mx"
+	
+	'Carga el sitio de internet
+	WebView1.LoadUrl(CurrentUrl)
+	
+	'Cuadro de texto mostrará la página
+	URLTEXT.Text = CurrentUrl
+	
+	
+	
+
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
+
+
+Sub Button1_Click
+	'Carga la página anterior
+	WebView1.Back
+End Sub
+
+Sub Button2_Click
+	'Carga la página siguiente
+	WebView1.Forward
+End Sub
+
+Sub WebView1_PageFinished (URL As String)
+	
+	'Cuando los sitios carguen, mostrará un mensaje de "Carga finalizada"
+	ToastMessageShow("Página Cargada",True)
+	
+End Sub
